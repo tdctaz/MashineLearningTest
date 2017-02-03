@@ -26,8 +26,14 @@ namespace PerformanceNeuralNet
 
 		public void Normalize()
 		{
-			double max = Inputs.SelectMany(x => x).Max();
-			Normalize(max);
+			for (int i = 0; i < Inputs.Length; i++)
+			{
+				double max = Inputs[i].Max();
+				for (int j = 0; j < Inputs[i].Length; j++)
+				{
+					Inputs[i][j] = (Inputs[i][j] / max) * 0.98 + 0.01;
+				}
+			}
 		}
 
 		public void Normalize(double max)
