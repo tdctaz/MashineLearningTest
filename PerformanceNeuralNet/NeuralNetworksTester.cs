@@ -101,10 +101,9 @@ namespace PerformanceNeuralNet
 		private static void CreateCsvRow(Data validationData, int i, Classification results, StringBuilder outputData)
 		{
 			var inputs = string.Join(",", validationData.Inputs[i].Select(x => x.ToString(CultureInfo.InvariantCulture)));
-			string rowName = $"Row{i}";
 			var output = validationData.Outputs[i].IndexOf(x => validationData.Outputs[i].Max() == x);
 			var predictions = string.Join(",", results.Classifications.Select(x => x.ToString(CultureInfo.InvariantCulture)));
-			outputData.AppendLine($"{inputs},{rowName},{output},{predictions}");
+			outputData.AppendLine($"{inputs},{output},{predictions}");
 		}
 
 		private static bool Success(double[] expected, double[] actual)
