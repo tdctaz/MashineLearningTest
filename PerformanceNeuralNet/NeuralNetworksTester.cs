@@ -39,7 +39,8 @@ namespace PerformanceNeuralNet
 		private void TryLoad(INeuralNetwork network)
 		{
 			var directory = new DirectoryInfo(Directory.GetCurrentDirectory());
-			var file = directory.EnumerateFiles($"{network.Name}-*.nn").OrderByDescending(x => x.Name).FirstOrDefault();
+			var files = directory.EnumerateFiles($"{network.Name}-*.nn").OrderByDescending(x => x.Name).ToArray();
+			var file = files.FirstOrDefault();
 			if (file != null)
 			{
 				network.Load(file.FullName);
